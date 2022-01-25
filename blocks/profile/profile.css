@@ -4,7 +4,6 @@
   justify-content: space-between;
   padding-top: 40px;
   padding-bottom: 51px;
-  align-items: center;
 }
 @media screen and (max-width: 320px) {
   .profile {
