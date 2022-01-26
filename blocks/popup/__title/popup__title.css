@@ -1,4 +1,4 @@
-.poopup__title {
+.popup__title {
   margin: 0;
   padding: 0;
   margin-top: 34px;
@@ -7,11 +7,13 @@
   font-size: 24px;
   line-height: 29px;
   text-align: left;
+  margin-bottom: 54px;
 }
 @media screen and (max-width: 320px) {
-  .poopup__title {
+  .popup__title {
     font-size: 18px;
     line-height: 22px;
     margin-top: 25px;
+    margin-bottom: 75px;
   }
 }

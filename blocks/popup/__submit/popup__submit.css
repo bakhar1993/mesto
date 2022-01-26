@@ -1,7 +1,7 @@
-.poopup__submit {
+.popup__submit {
   width: 358px;
   height: 50px;
-  margin-top: 48px;
+  margin-top: 18px;
   background: #000000;
   border-radius: 2px;
   font-family: "Inter", "Arial", sans-serif;
@@ -9,15 +9,20 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
+  margin-bottom: 37px;
 }
-.poopup__submit:hover{
+.popup__submit:hover{
   opacity: 0.8;
   cursor: pointer;
 }
 @media screen and (max-width: 320px) {
-  .poopup__submit {
+  .popup__submit {
     margin-top: 45px;
     width: 238px;
     height: 46px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

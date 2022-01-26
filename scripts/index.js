@@ -1,35 +1,29 @@
-let poopupCloseButton = document.querySelector('.poopup__close');
-let poopup = document.querySelector('.poopup');
-function poopupClosed() {
-    poopup.classList.remove('poopup_opened');
-}
-poopupCloseButton.addEventListener('click',poopupClosed);
-
-let formElement = document.querySelector('.poopup__container');
-let nameInput = document.querySelector('.poopup__name');
-let jobInput = document.querySelector('.poopup__job');
-
-
-function formSubmitHandler (evt) {
-    evt.preventDefault();
-let name = nameInput.value;
-let job = jobInput.value;
+let popupCloseButton = document.querySelector('.popup__close');
+let popup = document.querySelector('.popup');
+let formElement = document.querySelector('.popup__form');
+let nameInput = document.querySelector('.popup__input_type-name');
+let jobInput = document.querySelector('.popup__input_type-job');
+let profileEditButton = document.querySelector('.profile__edit-Button');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__job');
 
-
-profileName.textContent = name;
-profileJob.textContent = job;
-poopupClosed();
-nameInput.value = profileName.textContent;
-profileJob.value = profileJob.textContent;
+function popupClosed() {
+  popup.classList.remove('popup_opened');
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+function formSubmitHandler (evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  popupClosed();
+}
 
 // кнопка редактировать
-let profileEditButton = document.querySelector('.profile__editButton');
 function profileEddit() {
-    poopup.classList.add('poopup_opened');
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  popup.classList.add('popup_opened');
 }
 profileEditButton.addEventListener('click',profileEddit);
+popupCloseButton.addEventListener('click',popupClosed);
+formElement.addEventListener('submit', formSubmitHandler);

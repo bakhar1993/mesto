@@ -1,8 +1,0 @@
-.poopup__name-wrapper {
-  margin-top: 54px;
-}
-@media screen and (max-width: 320px) {
-  .poopup__name-wrapper {
-    margin-top: 75px;
-  }
-}
