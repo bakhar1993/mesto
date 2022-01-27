@@ -7,7 +7,7 @@
   align-items: center;
   margin: 0 22.25px;
 }
-@media screen  and (max-width:320px) {
+@media screen  and (max-width:680px) {
   .profile__info {
     grid-template-columns: 1fr min-content;
     row-gap: 14px;
