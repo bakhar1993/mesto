@@ -14,7 +14,9 @@ const popupFormCardsAdd = popupCardsAddButton.querySelector('.popup__form_type_a
 const placeInput = popupFormCardsAdd.querySelector('.popup__input_type-place');
 const linkInput = popupFormCardsAdd.querySelector('.popup__input_type-link');
 const profileAddButton = document.querySelector('.profile__add-Button');
-
+const dataCard = {};
+// dataN.name = placeInput.value;
+// dataN.link = linkInput.value;
 const photoGrid = document.querySelector('.photo-grid');
 const gridCardsTemplate = document.querySelector('#photo-grid__card').content;
 
@@ -49,7 +51,6 @@ function profileEddit() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupEdit);
-  console.log(popupEdit);
 }
 
 //кнопка добавить
@@ -61,22 +62,24 @@ function addCards() {
 
   //отправка card
 function formSubmitCards(evt){
-  evt.preventDefault();  
-  renderCard();
+  evt.preventDefault();
+  dataCard.name = placeInput.value;
+  dataCard.link = linkInput.value;
+  renderCard(dataCard);
   closePopup(popupAdd);
 }
 
 // //создание карточки
-function createCards(name,link){
+function createCards(item){
   const gridCards = gridCardsTemplate.querySelector('.photo-grid__item').cloneNode(true);
   const likeButton = gridCards.querySelector('.photo-grid__like');
   const deleteButton = gridCards.querySelector('.photo-grid__delete');
   const pictureCards = gridCards.querySelector('.photo-grid__picture');
   const titleCard =gridCards.querySelector('.photo-grid__title');
 
-  pictureCards.src = link;
-  pictureCards.alt = name;
-  titleCard.textContent = name;  
+  pictureCards.src = item.link;
+  pictureCards.alt = item.name;
+  titleCard.textContent = item.name;  
 
   pictureCards.addEventListener('click',openPic)
   deleteButton.addEventListener('click',deleteCards)
@@ -84,22 +87,22 @@ function createCards(name,link){
   return gridCards;
 } 
 
-function renderCard(){  
-  photoGrid.prepend(createCards(placeInput.value,linkInput.value));
+//placeInput.value,linkInput.value
+
+function renderCard(item){  
+  photoGrid.prepend(createCards(item));
 }
 
 //фото при загрузке страницы
 function initialCardsAdd(arr) {
   arr.forEach(function(item) {
-  placeInput.value = item.name;
-  linkInput.value = item.link;
-  renderCard();
+  renderCard(item);
     })
 }
 
 //лайк
 function clickLike(evt) {
-evt.target.classList.toggle('photo-grid__like_active');
+  evt.target.classList.toggle('photo-grid__like_active');
 }
 
 //удаление карточки
