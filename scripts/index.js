@@ -15,8 +15,6 @@ const placeInput = popupFormCardsAdd.querySelector('.popup__input_type-place');
 const linkInput = popupFormCardsAdd.querySelector('.popup__input_type-link');
 const profileAddButton = document.querySelector('.profile__add-Button');
 const dataCard = {};
-// dataN.name = placeInput.value;
-// dataN.link = linkInput.value;
 const photoGrid = document.querySelector('.photo-grid');
 const gridCardsTemplate = document.querySelector('#photo-grid__card').content;
 
@@ -34,8 +32,23 @@ function openPopup(popup) {
 
 //закрытие попапа
 function closePopup(popup) {
-  // evt.target.closest('.popup').classList.remove('popup_opened');
   popup.classList.remove('popup_opened');
+}
+
+//закрытие попапа при нажатии на оверлей
+function closeOvarlay(popup){
+  popup.addEventListener('click',(evt)=>{
+    closePopup(evt.target);
+  })
+}
+
+//закрытие попапа при нажатии esc
+function closePopapEsc(popup) {
+  document.addEventListener('keydown', (evt)=>{
+    if(evt.keyCode === 27) {
+      closePopup(popup);
+    }
+  })
 }
 
 //отправить форму профиля
@@ -51,6 +64,8 @@ function profileEddit() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupEdit);
+  closeOvarlay(popupEdit);
+  closePopapEsc(popupEdit);
 }
 
 //кнопка добавить
@@ -58,6 +73,8 @@ function addCards() {
   placeInput.value = '';
   linkInput.value = '';
   openPopup(popupAdd);
+  closeOvarlay(popupAdd);
+  closePopapEsc(popupAdd)
 }
 
   //отправка card
@@ -87,9 +104,7 @@ function createCards(item){
   return gridCards;
 } 
 
-//placeInput.value,linkInput.value
-
-function renderCard(item){  
+function renderCard(item){
   photoGrid.prepend(createCards(item));
 }
 
@@ -111,10 +126,13 @@ function deleteCards(evt){
 }
 
 //открытие изображения
-function openPic(evt) {  
+function openPic(evt) {
   openPopup(popupPic);
   pictureOpen.src = evt.target.src;
   titlePictureOpen.textContent = evt.target.alt;
+  //////
+  closeOvarlay(popupPic);
+  closePopapEsc(popupPic)
 }
 
 //события
@@ -125,3 +143,4 @@ popupCardsAddCloseButton.addEventListener('click',() => {closePopup(popupAdd)});
 popupFormCardsAdd.addEventListener('submit',formSubmitCards);
 formElement.addEventListener('submit',formSubmitHandler);
 popupPicCloseButton.addEventListener('click',() => {closePopup(popupPic)});
+
