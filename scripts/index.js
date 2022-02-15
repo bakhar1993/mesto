@@ -3,7 +3,7 @@ const profileEditButton = document.querySelector('.profile__edit-Button');
 const popupCloseButton = document.querySelector('.popup__close_type_profile-edit');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const formEditProfile = document.querySelector('.popup__form');
+const formEditProfile = document.querySelector('.popup__form_type_profile-edit');
 const nameInput = document.querySelector('.popup__input_type-name');
 const jobInput = document.querySelector('.popup__input_type-job');
 
@@ -48,8 +48,8 @@ function closePopup(popup) {
 }
 
 function closePopupEsc(evt) {
-  const popup = document.querySelector('.popup_opened');
   if(evt.keyCode === ESC_KEYCODE) {
+    const popup = document.querySelector('.popup_opened');
     closePopup(popup);
 }
 }
@@ -81,8 +81,7 @@ function editProfile() {
 function addCards() {
   popupFormCardsAdd.reset();// поля очищаются, но кнопка активна
   openPopup(popupAdd);
-  const popupOpened = document.querySelector('.popup_opened');
-  const inputListPopup = Array.from(popupOpened.querySelectorAll('.popup__input'));
+  const inputListPopup = Array.from(popupFormCardsAdd.querySelectorAll('.popup__input'));
 // сброс состояния кнопки 
   toggleButtonState(inputListPopup,popupCardsSubmitButton);
   // удаление ошибок в форме
