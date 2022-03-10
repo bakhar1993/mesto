@@ -1,11 +1,9 @@
-import { openPopup } from './utils.js';
-import { pictureOpen, popupPic, titlePictureOpen } from './constans.js'
-
 class Card {
-  constructor(dataCard, selectorTemplate) {
+  constructor(dataCard, selectorTemplate,handleCardClick) {
     this._selectorTemplate = selectorTemplate;
     this._src = dataCard.link;
     this._name = dataCard.name;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -14,18 +12,11 @@ class Card {
   }
 
   _setEventListener() {
-    this._pictureCards.addEventListener('click', () => { this._openPic() })
+    this._pictureCards.addEventListener('click', () => { this._handleCardClick(this._name, this._src)})
     this._deleteButton.addEventListener('click', () => { this._deleteCards() })
     this._likeButton.addEventListener('click', () => { this._clickLike() });
   }
 
-
-  _openPic() {
-    openPopup(popupPic);
-    pictureOpen.src = this._src;
-    pictureOpen.alt = this._name;
-    titlePictureOpen.textContent = this._name;
-  }
 
   _deleteCards() {
     this._element.closest('.photo-grid__item').remove();
@@ -44,7 +35,6 @@ class Card {
     this._pictureCards = this._element.querySelector('.photo-grid__picture');
     this._pictureCards.src = this._src;
     this._pictureCards.alt = this._name;
-
 
     this._setEventListener();
     return this._element;

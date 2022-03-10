@@ -63,7 +63,7 @@ export class FormValidator {
     this._setEventListeners();
   };
 
-  formErrorReset() {
+  resetFormError() {
     this._inputList.forEach((input) => {
       this._hideImputError(input)
     })

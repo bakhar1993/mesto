@@ -1,17 +1,20 @@
-import { Card } from './cards.js';
+import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import {
   initialCards, photoGrid, profileEditButton, popupCloseButton, profileAddButton, popupCardsAddCloseButton,
   popupFormCardsAdd, formEditProfile, popupPicCloseButton, popupAdd,
   dataCard, placeInput, linkInput, jobInput, nameInput,
-  profileJob, profileName, popupEdit, data, popupPic
+  profileJob, profileName, popupEdit, data, popupPic,
+  pictureOpen, titlePictureOpen
 } from './constans.js';
 import { closePopup, openPopup } from './utils.js';
 
 initialCardsAdd(initialCards);
 
 const profileEditValidate = new FormValidator(data, formEditProfile);
+profileEditValidate.enableValidation();
 const cardAddValidate = new FormValidator(data, popupFormCardsAdd);
+cardAddValidate.enableValidation();
 
 //отправить форму профиля
 function handleProfileFormSubmit(evt) {
@@ -22,19 +25,17 @@ function handleProfileFormSubmit(evt) {
 }
 
 // кнопка редактировать профиль
-function editProfile() {
-  profileEditValidate.enableValidation();
+function editProfile() {  
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupEdit);
-  profileEditValidate.formErrorReset();
+  profileEditValidate.resetFormError();
 }
 
 //кнопка добавить
 function addCards() {
-  popupFormCardsAdd.reset();
-  cardAddValidate.enableValidation();
-  cardAddValidate.formErrorReset();
+  popupFormCardsAdd.reset();  
+  cardAddValidate.resetFormError();
   openPopup(popupAdd);
   cardAddValidate.toggleButtonState()
 }
@@ -50,7 +51,7 @@ function handleCardsSubmit(evt) {
 
 //Создание карточки
 function createCards(item) {
-  const card = new Card(item, '#photo-grid__card');
+  const card = new Card(item, '#photo-grid__card',handleCardClick);
   return card.generateCards()
 }
 
@@ -66,11 +67,19 @@ function initialCardsAdd(arr) {
   })
 }
 
+//открытие картинки
+function handleCardClick(name, link) {
+  openPopup(popupPic);
+  pictureOpen.src = link;
+  pictureOpen.alt = name;
+  titlePictureOpen.textContent = name;
+}
+
 //события
 profileEditButton.addEventListener('click', editProfile);
-popupCloseButton.addEventListener('click', () => { closePopup(popupEdit) });
+popupCloseButton.addEventListener('mousedown', () => { closePopup(popupEdit) });
 profileAddButton.addEventListener('click', () => { addCards() });
 popupCardsAddCloseButton.addEventListener('click', () => { closePopup(popupAdd) });
 popupFormCardsAdd.addEventListener('submit', handleCardsSubmit);
 formEditProfile.addEventListener('submit', handleProfileFormSubmit);
-popupPicCloseButton.addEventListener('click', () => { closePopup(popupPic) });
+popupPicCloseButton.addEventListener('mousedown', () => { closePopup(popupPic) });
