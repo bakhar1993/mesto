@@ -21,15 +21,15 @@ cardAddValidate.enableValidation();
 //Данные профиля
 const User = new UserInfo({userNameSelector: '.profile__name', userJobSelector: '.profile__job'});
 
-const PictureCard = new PopupWithImage('.popup_type_open-pic');
-PictureCard.setEventListeners();
+const pictureCard = new PopupWithImage('.popup_type_open-pic');
+pictureCard.setEventListeners();
 
 // создание карточек при загрузке
 const cardSect = new Section({items: initialCards,renderer: (item)=>{
-  item.forEach((elem)=>{
-    const card = createCards(elem);
+  
+    const card = createCards(item);
     cardSect.addItem(card);
-  })
+
 }
 },'.photo-grid')
 cardSect.renderItems();
@@ -52,18 +52,18 @@ ProfileEdit.setEventListeners();
 
 //Редактирование профиля
 function editProfile() {
-  User.getUserInfo();
-  nameInput.value = User.getUserInfo().userName;
-  jobInput.value = User.getUserInfo().userJob;
-  ProfileEdit.open()
+  const userInfo = User.getUserInfo();
+  nameInput.value = userInfo.userName;
+  jobInput.value = userInfo.userJob;  
   profileEditValidate.resetFormError();
+  ProfileEdit.open()
 }
 
 //кнопка добавить
 function addCards() {
-  FormCardAdd.open();
   cardAddValidate.resetFormError();
-  cardAddValidate.toggleButtonState()
+  cardAddValidate.toggleButtonState();
+  FormCardAdd.open();
 }
 
 //Создание карточки
@@ -74,11 +74,10 @@ function createCards(item) {
 
 //открытие картинки
 function handleCardClick(name, link) {
-  PictureCard.open(link,name);
+  pictureCard.open(link,name);
 }
 
 //события
 profileEditButton.addEventListener('click', editProfile);
-popupCloseButton.addEventListener('mousedown', () => { closePopup(popupEdit) });
 profileAddButton.addEventListener('click', () => { addCards() });
 popupCardsAddCloseButton.addEventListener('click', () => { closePopup(popupAdd) });
