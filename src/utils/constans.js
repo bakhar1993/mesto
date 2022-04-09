@@ -6,6 +6,7 @@ export const profileJob = document.querySelector('.profile__job');
 export const formEditProfile = document.querySelector('.popup__form_type_profile-edit');
 export const nameInput = document.querySelector('.popup__input_type-name');
 export const jobInput = document.querySelector('.popup__input_type-job');
+export const formEditAvatar = document.querySelector('.popup__form_type_avatar-edit');
 
 export const popupAdd = document.querySelector('.popup_type_add-card');
 export const popupCardsAddButton = document.querySelector('.popup_type_add-card');
@@ -30,6 +31,8 @@ export const popupPicCloseButton = document.querySelector('.popup__close_type_op
 export const pictureOpen = document.querySelector('.popup__pic_type_open-pic');
 export const titlePictureOpen = document.querySelector('.popup__title_type_open-pic');
 export const ESC_KEYCODE = 27;
+export const avtarEditButton = document.querySelector('.profile__avatar-edit-button');
+
 export const initialCards = [
   {
     name: 'Архыз',

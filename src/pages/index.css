@@ -37,3 +37,10 @@
 @import url(../blocks/popup/__pic/_type/popup__pic_type_open-pic.css);
 @import url(../blocks/popup/__title/_type/popup__title_type_open-pic.css);
 @import url(../blocks//content-container/content-container.css);
+@import url(../blocks/photo-grid/__like-container/photo-grid__like-container.css);
+@import url(../blocks/photo-grid/__like-count/photo-grid__like-count.css);
+@import url(../blocks/popup/__title/_type/popup__title_type_delete-card.css);
+@import url(../blocks/profile/__avatar-edit-button/profile__avatar-edit-button.css);
+/* @import url(../blocks/popup/__input/_type/popup__input_type-avatar-edit.css); */
+@import url(../blocks/photo-grid/__delete/_opened/photo-grid__delete_opened.css);
+@import url(../blocks/popup/__submit/_type/popup__submit_type_avatar-edit.css);
