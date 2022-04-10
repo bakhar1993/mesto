@@ -24,7 +24,7 @@ export default class Api {
         name: userData.name,
         about: userData.about
       })
-    })
+    }).then(this._chekingResponse)
   }
 
   addCards(dataCard) {
@@ -35,7 +35,7 @@ export default class Api {
         name: dataCard.name,
         link: dataCard.link
       })
-    })
+    }).then(this._chekingResponse)
   }
 
   putLike(cardId) {

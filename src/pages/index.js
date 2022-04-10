@@ -44,9 +44,10 @@ pictureCard.setEventListeners();
 const formCardAdd = new PopupWithForm('.popup_type_add-card', {
   submitForm: (dat) => {
     formCardAdd.renderLoading(true)
-    api.addCards(dat).then((res) => { return res.json() }).then((res) => {
+    api.addCards(dat).then((res) => {
       const card = createCards(res);
       cardSect.addItem(card);
+      formCardAdd.close();
     }).catch((error) => console.log(error)).finally(() => { formCardAdd.renderLoading(false) })
 
   }
@@ -57,8 +58,9 @@ formCardAdd.setEventListeners();
 const profileEdit = new PopupWithForm('.popup_type_profile-edit', {
   submitForm: (dat) => {
     profileEdit.renderLoading(true)
-    user.setUserInfo({ userData: dat });
-    api.setUserInfo({ userData: dat }).catch((error) => console.log(error)).finally(() => { profileEdit.renderLoading(false) });
+   
+    api.setUserInfo({ userData: dat }).then( ()=>{user.setUserInfo({ userData: dat });
+    profileEdit.close();}).catch((error) => console.log(error)).finally(() => { profileEdit.renderLoading(false) });
   }
 });
 profileEdit.setEventListeners();
@@ -68,7 +70,8 @@ const avatarEdit = new PopupWithForm('.popup_type_avatar-edit', {
   submitForm: (avatarSrc) => {
     avatarEdit.renderLoading(true);
     api.editAvatar(avatarSrc).then((res) => {
-      user.setUserAvatar(res)
+      user.setUserAvatar(res);
+      avatarEdit.close();
     }).catch((error) => console.log(error)).finally(() => { avatarEdit.renderLoading(false) });
     avatarEditVailidate.toggleButtonState();
   }
@@ -95,14 +98,15 @@ function addCards() {
 function createCards(item) {
   const card = new Card(item, '#photo-grid__card', handleCardClick, api, userId, {
     handleConfirm: () => {
-      popupConfirm.renderLoading(false)
       popupConfirm.open();
       popupConfirm.setSubmitForm(() => {
         popupConfirm.renderLoading(true)
         api.deleteCard(item._id).then(() => {
           card.deleteCards();
           popupConfirm.close();
-        }).catch((error) => console.log(error))
+        }).catch((error) => console.log(error)).finally(()=>{
+          popupConfirm.renderLoading(false)
+        })
       })
     }
   })
@@ -116,19 +120,12 @@ function handleCardClick(name, link) {
 
 //информация профиля
 let userId;
-api.getUserInfo().then((data) => {
-  userId = data._id
-  user.setUserInfo({ userData: data });
-  user.setUserAvatar(data)
-}).catch((error) => console.log(error));
-
-
-
-//карточки при загрузке
-api.getInitialCards().then((res) => {
-  cardSect.renderItems(res);
+Promise.all([api.getUserInfo(),api.getInitialCards()]).then(([userInfo,cards])=>{
+  userId = userInfo._id
+  user.setUserInfo({ userData: userInfo });
+  user.setUserAvatar(userInfo);
+  cardSect.renderItems(cards);
 }).catch((error) => console.log(error))
-
 
 const cardSect = new Section({
   renderer: (item) => {
