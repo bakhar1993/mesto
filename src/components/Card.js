@@ -40,12 +40,12 @@ export default class Card {
       this._api.putLike(this._cardId).then((data)=>{
         likeCount.textContent = data.likes.length;
         likeButton.classList.add('photo-grid__like_active');
-      })
+      }).catch((error) => console.log(error))
     } else {    
       this._api.deleteLike(this._cardId).then((data)=>{
         likeCount.textContent = data.likes.length;
         likeButton.classList.remove('photo-grid__like_active');
-      })
+      }).catch((error) => console.log(error))
       
     }
   }
