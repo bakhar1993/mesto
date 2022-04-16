@@ -4,7 +4,7 @@
 .header{border-bottom:1px solid rgba(84,84,84,.7);margin:0 auto;max-width:880px;padding-bottom:41px}@media screen and (max-width:879px){.header{padding-bottom:31.6px}}
 .header__logo{background-image:url(03b78ada3425e9132ff3.svg);background-repeat:no-repeat;background-size:cover;height:33px;width:143px}.header__logo:hover{background-image:url(0ec1ee76a142aacd2c69.svg)}@media screen and (max-width:320px){.header__logo{height:24.4px;margin:0 19px;width:103.74px}}
 .profile{align-items:center;display:flex;justify-content:space-between;padding-bottom:51px;padding-top:40px}@media screen and (max-width:680px){.profile{flex-direction:column;margin:0 19px;padding-bottom:36px;padding-top:42px}}
-.profile__avatar{border-radius:50%;height:120px}
+.profile__avatar{border-radius:50%;height:120px;width:120px}
 .profile__info{align-items:center;-moz-column-gap:18px;column-gap:18px;display:grid;flex-grow:1;grid-template-columns:fit-content(80%) -webkit-min-content;grid-template-columns:fit-content(80%) min-content;margin:0 22.25px;row-gap:16px}@media screen and (max-width:680px){.profile__info{-moz-column-gap:10px;column-gap:10px;grid-template-columns:1fr -webkit-min-content;grid-template-columns:1fr min-content;margin:22.25px 0 0;row-gap:14px}}
 .profile__name{color:#fff;font-family:Inter,Arial,sans-serif;font-size:42px;font-weight:500;line-height:48px;margin:0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:680px){.profile__name{font-size:27px;line-height:33px;text-align:center}}
 .profile__job{color:#fff;font-family:Inter,Arial,sans-serif;font-size:18px;font-weight:400;line-height:22px;margin:0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:680px){.profile__job{font-size:14px;line-height:17px;text-align:center}}
@@ -12,7 +12,7 @@
 .profile__edit-Button{background-color:transparent;background-image:url(8667ac4a523e8fc42e59.svg);background-position:50%;background-repeat:no-repeat;border:1px solid #fff;box-sizing:border-box;height:24px;width:24px}.profile__edit-Button:hover{cursor:pointer;opacity:.6}@media screen and (max-width:680px){.profile__edit-Button{height:18px;width:18px}}
 .profile__avatar-container{max-height:127.5px;width:168.75px}
 .photo-grid{grid-gap:20px 17px;display:grid;grid-template-columns:repeat(auto-fit,282px);justify-content:center}@media screen and (max-width:320px){.photo-grid{grid-template-columns:repeat(1,282px)}}
-.photo-grid__delete{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-repeat:no-repeat;border:0;box-sizing:border-box;height:19px;position:absolute;right:20px;top:20px;width:18px}.photo-grid__delete:hover{cursor:pointer;opacity:.5}
+.photo-grid__delete{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-repeat:no-repeat;border:0;box-sizing:border-box;height:19px;position:absolute;right:20px;top:20px;visibility:hidden;width:18px}.photo-grid__delete:hover{cursor:pointer;opacity:.5}
 .photo-grid__description{align-items:center;display:flex;justify-content:space-between;padding:25px 15px 31px}
 .photo-grid__item{background-color:#fff;border-radius:10px;line-height:0;position:relative}
 .photo-grid__like{background-color:transparent;background-image:url(7913ddfd147a48616b09.svg);background-position:50%;background-repeat:no-repeat;border:0;box-sizing:border-box;height:19px;min-width:22px}.photo-grid__like:hover{cursor:pointer;opacity:.5}
@@ -37,4 +37,10 @@
 .popup__pic_type_open-pic{max-height:75vh;max-width:75vw}
 .popup__title_type_open-pic{color:#fff;font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:400;line-height:15px;margin:10px 0 0;padding:0;text-align:left}
 .content-container{margin:0 auto;max-width:880px}
+.photo-grid__like-container{align-items:center;display:flex;flex-direction:column}
+.photo-grid__like-count{align-items:center;display:flex;height:13px;justify-content:center;margin:3px 0 0;padding:0;width:10px}
+.popup__title_type_delete-card{margin-bottom:20px;text-align:left}
+.profile__avatar-edit-button{background:none;border:none;border-radius:50%;height:120px;position:absolute;width:120px}.profile__avatar-edit-button:hover{background:rgba(0,0,0,.8);background-image:url(8667ac4a523e8fc42e59.svg);background-position:50%;background-repeat:no-repeat;background-size:26px}
+.photo-grid__delete_opened{visibility:visible}
+.popup__submit_type_avatar-edit{margin-top:5px}
 
